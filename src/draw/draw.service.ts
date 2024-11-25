@@ -149,33 +149,39 @@ export class DrawService {
           // 任务失败,尝试去按照prompt_id去远程服务器获取结果
           const { prompt_id } = jobTemp.data;
           const server = this.remote_comfyui || this.local_comfyui;
-          if (server) {
-            const { data } = await this.comfyuiAxios.get(
-              `${server}/history/${prompt_id}`,
-            );
-            this.logger.log('远程服务器获取结果成功', data);
-            if (data[prompt_id]) {
-              //从data中尝试解构出来结果
-              const { outputs } = data[prompt_id];
-              Object.keys(outputs).forEach((key) => {
-                console.log(key, outputs[key]);
-                if (
-                  outputs[key]['images'] &&
-                  outputs[key]['images'].length > 0
-                ) {
-                  let imageUrl = '';
-                  const { filename, subfolder, type } =
-                    outputs[key]['images'][0];
-                  if (subfolder) {
-                    imageUrl = `${server}/view?subfolder=${subfolder}&filename=${filename}&type=${type}`;
-                  } else {
-                    imageUrl = `${server}/view?filename=${filename}&type=${type}`;
+          let isCompleted = false; // 控制循环的变量
+          while (!isCompleted) {
+            if (server) {
+              try {
+                const { data } = await this.comfyuiAxios.get(`${server}/history/${prompt_id}`);
+                
+                if (data[prompt_id]) {
+                  this.logger.log('远程服务器获取结果成功', data);
+                  const { outputs } = data[prompt_id];
+          
+                  for (const key of Object.keys(outputs)) {
+                    console.log(key, outputs[key]);
+                    if (outputs[key]['images']?.length > 0) {
+                      const { filename, subfolder, type } = outputs[key]['images'][0];
+                      const imageUrl = subfolder 
+                        ? `${server}/view?subfolder=${subfolder}&filename=${filename}&type=${type}`
+                        : `${server}/view?filename=${filename}&type=${type}`;
+          
+                      clearInterval(intervalId);
+                      resolve(imageUrl); // 返回结果
+                      isCompleted = true; // 设置任务完成标记
+                      break; // 找到结果，退出循环
+                    }
                   }
-                  clearInterval(intervalId);
-                  resolve(imageUrl);
-                  return;
                 }
-              });
+              } catch (error) {
+                this.logger.error('请求服务器数据时发生错误', error);
+              }
+            } else {
+              // 没有服务器的处理逻辑
+              clearInterval(intervalId);
+              reject({ status: 'error', message: '没有可用的服务器' });
+              isCompleted = true; // 退出循环
             }
           }
           clearInterval(intervalId);
@@ -436,7 +442,7 @@ export class DrawService {
     // if (params.upscale_by) {
     //   image2img[74].inputs.scale_by = params.upscale_by;
     // }
-    image2img[101].inputs.ckpt_name = this.ckpt_names[params.ckpt_name_id || 0];
+    image2img[92].inputs.ckpt_name = this.ckpt_names[params.ckpt_name_id || 0];
     image2img[51].inputs.filename_prefix =
       params.filename_prefix + '_image2img_output_final_';
     const data = {

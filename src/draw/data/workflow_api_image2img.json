@@ -5,7 +5,7 @@
     },
     "class_type": "ttN text",
     "_meta": {
-      "title": "TTN文本"
+      "title": "text"
     }
   },
   "19": {
@@ -14,7 +14,7 @@
     },
     "class_type": "ttN text",
     "_meta": {
-      "title": "TTN文本"
+      "title": "text"
     }
   },
   "25": {
@@ -32,7 +32,7 @@
     },
     "class_type": "Text Concatenate",
     "_meta": {
-      "title": "文本连锁"
+      "title": "Text Concatenate"
     }
   },
   "26": {
@@ -46,7 +46,7 @@
     },
     "class_type": "Text Concatenate",
     "_meta": {
-      "title": "文本连锁"
+      "title": "Text Concatenate"
     }
   },
   "51": {
@@ -57,10 +57,12 @@
       "filename_number_padding": 4,
       "filename_number_start": "false",
       "extension": "png",
+      "dpi": 100,
       "quality": 100,
+      "optimize_image": "false",
       "lossless_webp": "false",
-      "overwrite_mode": "false",
-      "show_history": "false",
+      "overwrite_mode": "prefix_as_filename",
+      "show_history": "true",
       "show_history_by_prefix": "true",
       "embed_workflow": "true",
       "show_previews": "true",
@@ -71,7 +73,7 @@
     },
     "class_type": "Image Save",
     "_meta": {
-      "title": "图像保存"
+      "title": "Image Save"
     }
   },
   "70": {
@@ -82,7 +84,7 @@
     },
     "class_type": "Image Load",
     "_meta": {
-      "title": "图像加载"
+      "title": "Image Load"
     }
   },
   "71": {
@@ -94,7 +96,7 @@
     },
     "class_type": "Image Size to Number",
     "_meta": {
-      "title": "图像尺寸到数字"
+      "title": "Image Size to Number"
     }
   },
   "72": {
@@ -104,7 +106,7 @@
     },
     "class_type": "Constant Number",
     "_meta": {
-      "title": "常数"
+      "title": "Constant Number"
     }
   },
   "73": {
@@ -121,7 +123,7 @@
     },
     "class_type": "Number Operation",
     "_meta": {
-      "title": "数字运算"
+      "title": "Number Operation"
     }
   },
   "74": {
@@ -138,12 +140,12 @@
     },
     "class_type": "ImageScaleBy",
     "_meta": {
-      "title": "图像按系数缩放"
+      "title": "Upscale Image By"
     }
   },
   "85": {
     "inputs": {
-      "seed": 385975464625457,
+      "seed": 878998063847385,
       "steps": 20,
       "cfg": 7,
       "sampler_name": "dpmpp_2m",
@@ -174,7 +176,7 @@
     },
     "class_type": "KSampler (Efficient)",
     "_meta": {
-      "title": "K采样器(效率)"
+      "title": "KSampler (Efficient)"
     }
   },
   "86": {
@@ -190,7 +192,7 @@
     },
     "class_type": "VAEEncode",
     "_meta": {
-      "title": "VAE编码"
+      "title": "VAE Encode"
     }
   },
   "87": {
@@ -207,7 +209,7 @@
     },
     "class_type": "Number Operation",
     "_meta": {
-      "title": "数字运算"
+      "title": "Number Operation"
     }
   },
   "88": {
@@ -217,7 +219,7 @@
     },
     "class_type": "Constant Number",
     "_meta": {
-      "title": "常数"
+      "title": "Constant Number"
     }
   },
   "89": {
@@ -227,7 +229,7 @@
     },
     "class_type": "LoadImage",
     "_meta": {
-      "title": "加载图像"
+      "title": "Load Image"
     }
   },
   "92": {
@@ -258,7 +260,7 @@
     },
     "class_type": "Efficient Loader",
     "_meta": {
-      "title": "效率加载器"
+      "title": "Efficient Loader"
     }
   },
   "94": {
@@ -266,11 +268,12 @@
       "text": [
         "95",
         0
-      ]
+      ],
+      "text2": "1.5"
     },
     "class_type": "ShowText|pysssss",
     "_meta": {
-      "title": "展示文本"
+      "title": "Show Text 🐍"
     }
   },
   "95": {
@@ -282,7 +285,7 @@
     },
     "class_type": "Number to Text",
     "_meta": {
-      "title": "数字到文本"
+      "title": "Number to Text"
     }
   },
   "96": {
@@ -488,7 +491,7 @@
     },
     "class_type": "LoRA Stacker",
     "_meta": {
-      "title": "LoRA堆"
+      "title": "LoRA Stacker"
     }
   },
   "98": {
@@ -499,7 +502,7 @@
       "replace_underscore": false,
       "trailing_comma": false,
       "exclude_tags": "",
-      "tags": "1girl, solo, looking_at_viewer, brown_hair, dress, bare_shoulders, brown_eyes, jewelry, earrings, bracelet, lips, realistic",
+      "tags": "1girl, solo, looking_at_viewer, smile, simple_background, dress, full_body, sleeveless, no_humans, outstretched_arms, pink_dress, oekaki, spread_arms",
       "image": [
         "70",
         0
@@ -507,7 +510,7 @@
     },
     "class_type": "WD14Tagger|pysssss",
     "_meta": {
-      "title": "WD14反推提示词"
+      "title": "WD14 Tagger 🐍"
     }
   }
 }
